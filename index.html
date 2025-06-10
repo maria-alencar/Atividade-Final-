@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Organização Pessoal</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Painel de Organização Pessoal</h1>
+    </header>
+
+    <main>
+
+      <section id="eventos">
+        <h2>Eventos</h2>
+        <div id="calendario"></div>
+      </section>
+
+ 
+      <section id="tarefas">
+        <h2>Tarefas</h2>
+        <input type="text" id="nova-tarefa" placeholder="Adicione uma nova tarefa..." />
+        <button id="adicionar-tarefa">Adicionar</button>
+        <ul id="lista-tarefas"></ul>
+      </section>
+
+      <section id="anotacoes">
+        <h2>Anotações</h2>
+        <textarea id="nova-anotacao" placeholder="Digite uma nota rápida..."></textarea>
+        <button id="adicionar-anotacao">Salvar Nota</button>
+        <div id="lista-anotacoes"></div>
+      </section>
+    </main>
+  </div>
+
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
