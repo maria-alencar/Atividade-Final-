@@ -54,69 +54,46 @@ $(document).ready(function () {
   });
 
   carregarTarefas();
-});
 
-function salvarAnotacoes() {
-  let anotacoes = [];
-  $('#lista-anotacoes .nota').each(function () {
-    anotacoes.push($(this).clone().children().remove().end().text().trim());
-  });
-  localStorage.setItem('anotacoes', JSON.stringify(anotacoes));
-}
+  function salvarAnotacoes() {
+    let anotacoes = [];
+    $('#lista-anotacoes .nota').each(function () {
+      anotacoes.push($(this).clone().children().remove().end().text().trim());
+    });
+    localStorage.setItem('anotacoes', JSON.stringify(anotacoes));
+  }
 
-function carregarAnotacoes() {
-  let anotacoes = JSON.parse(localStorage.getItem('anotacoes'));
-  if (anotacoes) {
-    anotacoes.forEach(function (nota) {
+  function carregarAnotacoes() {
+    let anotacoes = JSON.parse(localStorage.getItem('anotacoes'));
+    if (anotacoes) {
+      anotacoes.forEach(function (nota) {
+        let item = $('<div class="nota"></div>').text(nota);
+        let lixo = $('<span class="lixo">&#128465;</span>');
+        item.append(lixo);
+        $('#lista-anotacoes').append(item);
+      });
+    }
+  }
+
+  $('#adicionar-anotacao').click(function () {
+    let nota = $('#nova-anotacao').val().trim();
+    if (nota !== '') {
       let item = $('<div class="nota"></div>').text(nota);
       let lixo = $('<span class="lixo">&#128465;</span>');
       item.append(lixo);
       $('#lista-anotacoes').append(item);
-    });
-  }
-}
-
-$('#adicionar-anotacao').click(function () {
-  let nota = $('#nova-anotacao').val().trim();
-  if (nota !== '') {
-    let item = $('<div class="nota"></div>').text(nota);
-    let lixo = $('<span class="lixo">&#128465;</span>');
-    item.append(lixo);
-    $('#lista-anotacoes').append(item);
-    $('#nova-anotacao').val('');
-    salvarAnotacoes();
-  }
-});
-
-$('#lista-anotacoes').on('click', '.lixo', function () {
-  $(this).parent().remove();
-  salvarAnotacoes();
-});
-
-carregarAnotacoes();
-
-document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendario');
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    editable: true,
-    selectable: true,
-    events: [],
-    dateClick: function(info) {
-      var title = prompt('Digite o nome do evento:');
-      if (title) {
-        calendar.addEvent({
-          title: title,
-          start: info.dateStr,
-          allDay: true
-        });
-      }
+      $('#nova-anotacao').val('');
+      salvarAnotacoes();
     }
   });
-  calendar.render();
+
+  $('#lista-anotacoes').on('click', '.lixo', function () {
+    $(this).parent().remove();
+    salvarAnotacoes();
+  });
+
+  carregarAnotacoes();
 });
-
-
 
 
 
